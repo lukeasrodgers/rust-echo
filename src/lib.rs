@@ -22,8 +22,10 @@ pub fn print_usage(program: &str, opts: &[OptGroup]) {
 fn join(vs: Vec<String>) -> String {
     let mut result = "".to_string();
     for s in vs.iter() {
-        result.push_str(s.as_slice())
+        result.push_str(s.as_slice());
+        result.push_str(" ");
     }
+    result.pop();
     result
 }
 
@@ -46,4 +48,10 @@ mod tests {
         assert_eq!(massage(v), s);
     }
 
+    #[test]
+    fn assert_massage_double() {
+        let s = "var bar".to_string();
+        let v = vec!["var".to_string(), "bar".to_string()];
+        assert_eq!(massage(v), s);
+    }
 }
