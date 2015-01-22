@@ -28,5 +28,5 @@ fn main() {
         print_usage(program.as_slice(), opts);
         return;
     };
-    echo_input(input);
+    echo_input(&input);
 }
