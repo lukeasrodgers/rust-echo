@@ -1,6 +1,12 @@
+#![feature(plugin)]
+#[plugin] #[no_link] extern crate regex_macros;
+extern crate regex;
 extern crate getopts;
+
 use getopts::{OptGroup,usage};
 use std::os;
+
+mod interpolation;
 
 pub fn echo_input(inp: &Vec<String>) {
     let massaged = massage(inp);
@@ -9,7 +15,7 @@ pub fn echo_input(inp: &Vec<String>) {
 
 fn massage(vs: &Vec<String>) -> String {
     let joined = join(vs);
-    let interpolated = interpolate(joined);
+    let interpolated = interpolation::interpolate(joined);
     interpolated
 }
 
@@ -27,10 +33,6 @@ fn join(vs: &Vec<String>) -> String {
     // remove trailing space
     result.pop();
     result
-}
-
-fn interpolate(s: String) -> String {
-    s
 }
 
 #[cfg(test)]
