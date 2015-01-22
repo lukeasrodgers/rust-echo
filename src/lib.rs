@@ -9,8 +9,7 @@ pub fn echo_input(inp: Vec<String>) {
 
 fn massage(vs: Vec<String>) -> String {
     let joined = join(vs);
-    let stripped = strip(joined);
-    let interpolated = interpolate(stripped);
+    let interpolated = interpolate(joined);
     interpolated
 }
 
@@ -27,10 +26,6 @@ fn join(vs: Vec<String>) -> String {
     }
     result.pop();
     result
-}
-
-fn strip(s: String) -> String {
-    s
 }
 
 fn interpolate(s: String) -> String {
