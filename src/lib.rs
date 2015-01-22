@@ -24,6 +24,7 @@ fn join(vs: Vec<String>) -> String {
         result.push_str(s.as_slice());
         result.push_str(" ");
     }
+    // remove trailling space
     result.pop();
     result
 }
