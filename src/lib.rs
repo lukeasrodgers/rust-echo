@@ -3,9 +3,14 @@ extern crate getopts;
 use getopts::{OptGroup,usage};
 use std::os;
 
-pub fn echo_input(inp: &Vec<String>) {
+pub fn echo_newline(inp: &Vec<String>) {
     let massaged = massage(inp);
     println!("{}", massaged);
+}
+
+pub fn echo_no_newline(inp: &Vec<String>) {
+    let massaged = massage(inp);
+    print!("{}", massaged);
 }
 
 fn massage(vs: &Vec<String>) -> String {

@@ -3,7 +3,7 @@ extern crate echo;
 use getopts::{optopt,optflag,getopts,OptGroup,usage};
 use std::os;
 
-use echo::{echo_input, print_usage};
+use echo::{echo_newline, echo_no_newline, print_usage};
 
 fn main() {
     let args: Vec<String> = os::args();
@@ -11,7 +11,7 @@ fn main() {
     let program = args[0].clone();
 
     let opts = &[
-        optopt("n", "", "do not print trailing newline", "NAME"),
+        optflag("n", "no newline", "do not print trailing newline"),
         optflag("h", "help", "print this help menu")
     ];
     let matches = match getopts(args.tail(), opts) {
@@ -23,10 +23,15 @@ fn main() {
         return;
     }
     let input = if !matches.free.is_empty() {
-        matches.free
+        matches.free.clone()
     } else {
         print_usage(program.as_slice(), opts);
         return;
     };
-    echo_input(&input);
+    if matches.opt_present("n") {
+        echo_no_newline(&input);
+    }
+    else {
+        echo_newline(&input);
+    }
 }
