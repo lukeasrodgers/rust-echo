@@ -1,12 +1,7 @@
-#![feature(plugin)]
-#[plugin] #[no_link] extern crate regex_macros;
-extern crate regex;
 extern crate getopts;
 
 use getopts::{OptGroup,usage};
 use std::os;
-
-mod interpolation;
 
 pub fn echo_input(inp: &Vec<String>) {
     let massaged = massage(inp);
@@ -14,9 +9,7 @@ pub fn echo_input(inp: &Vec<String>) {
 }
 
 fn massage(vs: &Vec<String>) -> String {
-    let joined = join(vs);
-    let interpolated = interpolation::interpolate(joined);
-    interpolated
+    join(vs)
 }
 
 pub fn print_usage(program: &str, opts: &[OptGroup]) {
