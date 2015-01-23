@@ -4,17 +4,11 @@ use getopts::{OptGroup,usage};
 use std::os;
 
 pub fn echo_newline(inp: &Vec<String>) {
-    let massaged = massage(inp);
-    println!("{}", massaged);
+    println!("{}", join(inp));
 }
 
 pub fn echo_no_newline(inp: &Vec<String>) {
-    let massaged = massage(inp);
-    print!("{}", massaged);
-}
-
-fn massage(vs: &Vec<String>) -> String {
-    join(vs)
+    print!("{}", join(inp));
 }
 
 pub fn print_usage(program: &str, opts: &[OptGroup]) {
@@ -35,19 +29,19 @@ fn join(vs: &Vec<String>) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::massage;
+    use super::join;
 
     #[test]
-    fn assert_massage_single() {
+    fn assert_join_single() {
         let s = "var".to_string();
         let v = vec![s.clone()];
-        assert_eq!(massage(&v), s);
+        assert_eq!(join(&v), s);
     }
 
     #[test]
-    fn assert_massage_double() {
+    fn assert_join_double() {
         let s = "var bar".to_string();
         let v = vec!["var".to_string(), "bar".to_string()];
-        assert_eq!(massage(&v), s);
+        assert_eq!(join(&v), s);
     }
 }
