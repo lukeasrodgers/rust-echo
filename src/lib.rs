@@ -17,14 +17,7 @@ pub fn print_usage(program: &str, opts: &[OptGroup]) {
 }
 
 fn join(vs: &Vec<String>) -> String {
-    let mut result = "".to_string();
-    for s in vs.iter() {
-        result.push_str(s.as_slice());
-        result.push_str(" ");
-    }
-    // remove trailing space
-    result.pop();
-    result
+    vs.connect(" ")
 }
 
 #[cfg(test)]
